@@ -2,36 +2,36 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { getUser } from "../clients/GetUserService";
-import { request } from "http";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export default function LoginComponent() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    console.log({
-      email,
-      password,
-    });
-
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+// toast.error( "Login failed",{style: { background: 'red', color: 'white' }});
   const res = await fetch("/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
+    body: JSON.stringify({ email, password }),
   });
-  const data = await res.json();
-  console.log(data);
-    window.location.href = "/"; // Redirect to home page on successful login
 
-  };
+  const data = await res.json();
+
+  if (!res.ok) {
+    toast.error(data.message || "Login failed");
+    return;
+  }
+
+  toast.success("Login successful");
+
+  router.push("/");
+};
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4">

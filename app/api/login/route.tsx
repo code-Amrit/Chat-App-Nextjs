@@ -5,14 +5,17 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+    console.log("@@@", body);
     const backendRes = await getUser.loginUser(body);
+    console.log("###", backendRes);
 
     // 🔴 If backend failed → return error
     if (!backendRes.oAuthToken) {
-      return NextResponse.json(
-        { message: backendRes.message || "Login failed" },
-      );
-    }
+  return NextResponse.json(
+    { message: backendRes.message || "Login failed" },
+    { status: 401 } 
+  );
+}
 
     // ✅ Success → set cookie
     const response = NextResponse.json({
