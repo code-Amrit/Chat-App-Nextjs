@@ -21,7 +21,7 @@ export default async function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="text-xl font-bold">
-          StyxSports
+          Chat with :{")"}
         </Link>
 
         {/* Links */}
@@ -44,7 +44,7 @@ export default async function Navbar() {
 
           ) : (
             <Link
-              href="/login"
+              href="/auth/login"
               className="px-4 py-2 rounded-md bg-black text-white"
             >
               Login

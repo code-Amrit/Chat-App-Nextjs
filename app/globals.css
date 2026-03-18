@@ -186,7 +186,7 @@ input {
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: var(--ac-primary-950);
 }
 
 h1{

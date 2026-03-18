@@ -7,6 +7,9 @@ export const getUser = {
   getUser: () =>
     httpGet<GetAllUsersResponse>("/auth/allUser"),
 
-//   saveIpLog: (payload: { ip: string }) =>
-//     httpPost<{ success: boolean }>("/web/api/ip-location", payload),
+  registerUser: (payload: registerUserRequest) =>
+    httpPost<{ success: boolean }>("/auth/register", payload),
+
+  loginUser: (payload: loginUserRequest) =>
+    httpPost<LoginResponse>("/auth/login", payload),
 };
