@@ -17,14 +17,18 @@ export default function LoginComponent() {
       password,
     });
 
-    const request: loginUserRequest = {
+  const res = await fetch("/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
       email,
       password,
-    }
-
-    const response = await getUser.loginUser(request);
-
-    console.log('@@@',response);
+    }),
+  });
+  const data = await res.json();
+  console.log(data);
     window.location.href = "/"; // Redirect to home page on successful login
 
   };

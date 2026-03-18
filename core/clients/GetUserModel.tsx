@@ -18,13 +18,10 @@ interface loginUserRequest{
 }
 
  interface LoginResponse {
-  message: string;
-  token: string;
-  user: Userinfo;
-}
-
- interface Userinfo {
-  id: string;
-  name: string;
+  userId: string;
+  fullName: string;
   email: string;
+  oAuthToken: string;
+  refreshToken: string;
+  message?: string;
 }
